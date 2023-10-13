@@ -1,7 +1,6 @@
 package data;
 
 import lombok.Value;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class DataHelper {
     private DataHelper() {}
@@ -23,7 +22,7 @@ public class DataHelper {
         public static class VerificationCode {
             private String code;
         }
-        public static VerificationCode getVerificatioCodeFor () {
+        public static VerificationCode getVerificatioCodeFor (AuthInfo authInfo) {
         return new VerificationCode("12345");
         }
 

@@ -15,10 +15,9 @@ public class TransferTest {
 
         var loginPage = new LoginPageV1();
         var authInfo = DataHelper.getAuthInfo();
-        loginPage.validLogin((authInfo));
+        var verificationPage = loginPage.validLogin((authInfo));
+        var verificationCode = DataHelper.getVerificatioCodeFor(authInfo);
+        var dashboardPage = verificationPage.validVerify(verificationCode);
 
-
-
-        $ ("[data-test-id = 'code'] input").shouldBe(visible);
     }
 }
