@@ -12,27 +12,26 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
     private final String balanceStart = "баланс: ";
-    private final String balanceFinish = "  р.";
-    private final SelenideElement heading = $("[data-test-id = dashboard");
-    private final ElementsCollection cards = $$(".list__item div");
+    private final String balanceFinish = " р.";
+    private SelenideElement header = $("[data-test-id=dashboard]");
+    private ElementsCollection cards = $$(".list__item div");
 
     public DashboardPage() {
-        heading.shouldBe(visible);
+        header.shouldBe(visible);
     }
 
     public int getCardBalance(DataHelper.CardInfo cardInfo) {
         var text = cards.findBy(Condition.text(cardInfo.getCardNumber().substring(15))).getText();
         return extractBalance(text);
     }
-
-    //    public int getCardBalance (int index) {                                       дополнительный метод для получения баланса карты
-//        var text = cards.get(index).getText();
-//        return extractBalance(text);
-//    }
+    //    public int getCardBalance (int index) {          дополнительный метод для получения баланса карты
+   //       var text = cards.get(index).getText();
+  //        return extractBalance(text);
+    //     }
 
 
     public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
-        cards.findBy(attribute("data-test-id", cardInfo.getTestId())).$("button").click();
+        cards.findBy(Condition.attribute("data-test-id", cardInfo.getTestId())).$("button").click();
         return new TransferPage();
     }
 

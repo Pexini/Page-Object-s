@@ -42,5 +42,5 @@ public class TransferTest {
         var actualBalanceSecondCard = dashboardPage.getCardBalance(secondCardInfo);
         assertEquals(expectedBalanceFirstCard, actualBalanceFirstCard);
         assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard);
-       }
+    }
 }
