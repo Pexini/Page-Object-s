@@ -8,7 +8,11 @@ import page.DashboardPage;
 import page.LoginPageV1;
 import page.TransferPage;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static data.DataHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,5 +46,19 @@ public class TransferTest {
         var actualBalanceSecondCard = dashboardPage.getCardBalance(secondCardInfo);
         assertEquals(expectedBalanceFirstCard, actualBalanceFirstCard);
         assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard);
+    }
+
+    @Test
+    void shouldShowErrorMessage() {
+        var firstCardBalance = dashboardPage.getCardBalance(firstCardInfo);
+        var secondCardBalance = dashboardPage.getCardBalance(secondCardInfo);
+        var amount = generateValidAmount(firstCardBalance);
+        var expectedBalanceFirstCard = firstCardBalance - amount;
+        var expectedBalanceSecondCard = secondCardBalance + amount;
+        var transferPage = dashboardPage.selectCardToTransfer(secondCardInfo);
+        $(byText("Пополнить")).click();
+                $("[data-test-id='error-notification'] .notification__content")
+                .shouldHave(exactText("Ошибка! Произошла ошибка"));
+
     }
 }
