@@ -19,6 +19,7 @@ public class TransferPage {
     private final SelenideElement fromInput = $("[data-test-id='from'] input");
     private final SelenideElement transferHead = $(byText("Пополнение карты"));
     private final SelenideElement errorMessage = $("[data-test-id='error-message']");
+    private final SelenideElement errorMessageWrongTransfer = $("[data-test-id='error-notification].notification__content");
 
 
     public TransferPage() {
@@ -38,5 +39,8 @@ public class TransferPage {
 
     public void findErrorMessage(String expectedText) {
         errorMessage.shouldHave(exactText(expectedText), Duration.ofSeconds(15)).shouldBe(visible);
+    }
+    public void MessageWithError(String expectedText) {
+        errorMessageWrongTransfer.shouldHave(exactText(expectedText), Duration.ofSeconds(15)).shouldBe(visible);
     }
 }

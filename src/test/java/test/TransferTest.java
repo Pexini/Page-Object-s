@@ -49,16 +49,17 @@ public class TransferTest {
     }
 
     @Test
-    void shouldShowErrorMessage() {
+    void shouldShowMessageWithError() {
         var firstCardBalance = dashboardPage.getCardBalance(firstCardInfo);
         var secondCardBalance = dashboardPage.getCardBalance(secondCardInfo);
-        var amount = generateValidAmount(firstCardBalance);
-        var expectedBalanceFirstCard = firstCardBalance - amount;
-        var expectedBalanceSecondCard = secondCardBalance + amount;
-        var transferPage = dashboardPage.selectCardToTransfer(secondCardInfo);
-        $(byText("Пополнить")).click();
-                $("[data-test-id='error-notification'] .notification__content")
-                .shouldHave(exactText("Ошибка! Произошла ошибка"));
+        var amount = generateValidAmount(secondCardBalance);
+        var transferPage = dashboardPage.selectCardToTransfer(firstCardInfo);
+        transferPage.makeTransfer(String.valueOf(amount), getWithoutNunber());
+        transferPage.MessageWithError("Ошибка! Произошла ошибка");
+        var actualBalanceFirstCard = dashboardPage.getCardBalance(firstCardInfo);
+        var actualBalanceSecondCard = dashboardPage.getCardBalance(secondCardInfo);
+        assertEquals(firstCardBalance, actualBalanceFirstCard);
+        assertEquals(secondCardBalance, actualBalanceSecondCard);
 
     }
 
