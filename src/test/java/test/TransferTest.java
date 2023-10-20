@@ -61,7 +61,7 @@ public class TransferTest {
     }
 
     @Test
-    void shouldGetErrorTransferMoneyBetweenOwnCards(){
+    void shouldGetErrorTransferMoneyBetweenOwnCards() {
         var firstCardBalance = dashboardPage.getCardBalance(firstCardInfo);
         var secondCardBalance = dashboardPage.getCardBalance(secondCardInfo);
         var amount = generateInvalidAmount(secondCardBalance);

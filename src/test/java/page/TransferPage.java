@@ -39,7 +39,8 @@ public class TransferPage {
     public void findErrorMessage(String expectedText) {
         errorMessage.shouldHave(exactText(expectedText), Duration.ofSeconds(15)).shouldBe(visible);
     }
+
     public void messageWithError(String expectedText) {
-        errorMessageWrongTransfer.shouldHave(text(expectedText),Duration.ofSeconds(15)).shouldBe(visible);
+        errorMessageWrongTransfer.shouldHave(text(expectedText), Duration.ofSeconds(15)).shouldBe(visible);
     }
 }
