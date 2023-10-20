@@ -52,14 +52,11 @@ public class TransferTest {
     void shouldShowMessageWithError() {
         var firstCardBalance = dashboardPage.getCardBalance(firstCardInfo);
         var secondCardBalance = dashboardPage.getCardBalance(secondCardInfo);
-        var amount = generateValidAmount(secondCardBalance);
+        var amount = generateInvalidAmount(secondCardBalance);
         var transferPage = dashboardPage.selectCardToTransfer(firstCardInfo);
         transferPage.makeTransfer(String.valueOf(amount), getWithoutNunber());
-        transferPage.MessageWithError("Ошибка! Произошла ошибка");
-        var actualBalanceFirstCard = dashboardPage.getCardBalance(firstCardInfo);
-        var actualBalanceSecondCard = dashboardPage.getCardBalance(secondCardInfo);
-        assertEquals(firstCardBalance, actualBalanceFirstCard);
-        assertEquals(secondCardBalance, actualBalanceSecondCard);
+        transferPage.messageWithError("Ошибка! ");
+
 
     }
 

@@ -25,8 +25,8 @@ public class DashboardPage {
         return extractBalance(text);
     }
     //    public int getCardBalance (int index) {          дополнительный метод для получения баланса карты
-   //       var text = cards.get(index).getText();
-  //        return extractBalance(text);
+    //       var text = cards.get(index).getText();
+    //        return extractBalance(text);
     //     }
 
 

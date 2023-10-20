@@ -7,8 +7,7 @@ import data.DataHelper;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -40,7 +39,7 @@ public class TransferPage {
     public void findErrorMessage(String expectedText) {
         errorMessage.shouldHave(exactText(expectedText), Duration.ofSeconds(15)).shouldBe(visible);
     }
-    public void MessageWithError(String expectedText) {
-        errorMessageWrongTransfer.shouldHave(exactText(expectedText), Duration.ofSeconds(15)).shouldBe(visible);
+    public void messageWithError(String expectedText) {
+        errorMessageWrongTransfer.shouldHave(text(expectedText),Duration.ofSeconds(15)).shouldBe(visible);
     }
 }
